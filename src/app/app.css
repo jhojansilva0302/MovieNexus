@@ -1,50 +1,5 @@
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem 5%;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background-color: rgba(11, 17, 32, 0.8);
-    backdrop-filter: blur(10px);
-}
-
-.logo h1 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--accent-blue);
-    letter-spacing: -0.5px;
-}
-
-.nav ul {
-    display: flex;
-    list-style: none;
-    gap: 2rem;
-}
-
-.nav a {
-    text-decoration: none;
-    color: var(--text-secondary);
-    font-weight: 500;
-    font-size: 0.95rem;
-    transition: color 0.3s ease;
-}
-
-.nav a:hover, .nav a.active {
-    color: var(--text-primary);
-}
-
 .main-content {
     min-height: calc(100vh - 160px);
     display: flex;
     flex-direction: column;
-}
-
-.footer {
-    padding: 2rem;
-    text-align: center;
-    color: var(--text-secondary);
-    font-size: 0.85rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
 }

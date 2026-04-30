@@ -1,12 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
 
 :root {
-    --bg-color: #0b1120;
-    --text-primary: #ffffff;
-    --text-secondary: #94a3b8;
-    --accent-blue: #38bdf8;
-    --accent-pink: #f43f5e;
+    /* Colors */
+    --primary-color: #38bdf8;
+    --secondary-color: #f43f5e;
+    --bg-dark: #0b1120;
+    --bg-surface: #1e293b;
+    --text-main: #ffffff;
+    --text-muted: #94a3b8;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+
+    /* Effects */
+    --shadow-glow: 0 0 20px rgba(56, 189, 248, 0.3);
+    --transition-fast: 0.3s ease;
 }
+
 
 * {
     margin: 0;
@@ -16,8 +26,9 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-primary);
+    background-color: var(--bg-dark);
+    color: var(--text-main);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
