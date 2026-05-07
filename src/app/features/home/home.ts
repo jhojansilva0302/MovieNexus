@@ -16,11 +16,12 @@ export class Home implements OnInit {
   trendingMovies: Movie[] = [];
 
   ngOnInit(): void {
+    console.log('🎬 Home Inicializado. Cargando películas...');
     // Guía Día 2 - Reto Final: Llamar getTrendingMovies y console.log
     this.movieService.getTrendingMovies().subscribe({
       next: (response) => {
         this.trendingMovies = response.results;
-        console.log('✅ Películas Trending (20):', this.trendingMovies);
+        console.log('✅ ¡Éxito! Datos recibidos de TMDB:', this.trendingMovies);
       },
       error: (err) => console.error('❌ Error al cargar trending:', err)
     });

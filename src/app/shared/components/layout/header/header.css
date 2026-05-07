@@ -10,23 +10,21 @@
     position: sticky;
     top: 0;
     z-index: 100;
-    /* Glassmorphism: fondo translúcido + desenfoque */
-    background: var(--glass-bg, rgba(14, 22, 40, 0.75));
+    /* Glassmorphism: fondo translúcido + desenfoque (Guía Día 3 - Paso 3) */
+    background: var(--glass);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--glass-border, rgba(56, 189, 248, 0.12));
-    transition: background var(--transition-base, 0.3s ease);
+    border-bottom: var(--border-glass);
 }
 
 .logo h1 {
     font-size: 1.5rem;
     font-weight: 800;
-    background: var(--grad-main, linear-gradient(135deg, #38bdf8, #f43f5e));
+    background: var(--grad-main);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     letter-spacing: -0.5px;
-    cursor: default;
 }
 
 .nav ul {

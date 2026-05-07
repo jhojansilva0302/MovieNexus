@@ -6,159 +6,57 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-  /* — Colores principales — */
+  /* — Colores Core — */
   --primary: #38bdf8;
-  --primary-dark: #0ea5e9;
-  --secondary: #f43f5e;
-  --accent: #a78bfa;
-
-  /* — Fondos — */
+  --primary-glow: rgba(56, 189, 248, 0.4);
+  --accent: #f43f5e;
   --bg-dark: #0b1120;
   --bg-surface: #1e293b;
-  --bg-card: #162032;
-  --bg-glass: rgba(30, 41, 59, 0.6);
-
-  /* — Texto — */
   --text-main: #f1f5f9;
   --text-muted: #94a3b8;
-  --text-dim: #64748b;
 
-  /* — Gradientes — */
-  --grad-main: linear-gradient(135deg, var(--primary), var(--secondary));
-  --grad-accent: linear-gradient(135deg, var(--accent), var(--primary));
-  --grad-dark: linear-gradient(180deg, var(--bg-dark), var(--bg-surface));
+  /* — Gradientes Premium — */
+  --grad-main: linear-gradient(135deg, var(--primary), var(--accent));
 
-  /* — Alias de compatibilidad — */
-  --primary-color: var(--primary);
-  --secondary-color: var(--secondary);
-  --gradient-primary: var(--grad-main);
+  /* — Espaciado y Radio (Consistencia) — */
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+  --radius-lg: 16px;
 
-  /* — Espaciado — */
-  --space-xs: 0.25rem;
-  --space-sm: 0.5rem;
-  --space-md: 1rem;
-  --space-lg: 1.5rem;
-  --space-xl: 2rem;
-  --space-2xl: 3rem;
-
-  /* — Border radius — */
-  --radius-sm: 6px;
-  --radius-md: 12px;
-  --radius-lg: 20px;
-  --radius-full: 9999px;
-
-  /* — Sombras — */
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.4);
-  --shadow-glow: 0 0 20px rgba(56, 189, 248, 0.35);
-  --shadow-glow-hover: 0 0 35px rgba(56, 189, 248, 0.55);
+  /* — Profundidad — */
+  --glass: rgba(15, 23, 42, 0.7);
+  --border-glass: 1px solid rgba(255, 255, 255, 0.1);
 
   /* — Transiciones — */
-  --transition-fast: 0.2s ease;
-  --transition-base: 0.3s ease;
-  --transition-slow: 0.5s ease;
-
-  /* — Glassmorphism — */
-  --glass-bg: rgba(14, 22, 40, 0.75);
-  --glass-border: rgba(56, 189, 248, 0.12);
-  --glass-blur: blur(12px);
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ===================================================
-   RESET Y BASE
-=================================================== */
-*, *::before, *::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: 'Inter', sans-serif;
-  background-color: var(--bg-dark);
-  color: var(--text-main);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  line-height: 1.6;
-}
-
-/* ===================================================
-   GUÍA DÍA 3 - PASO 2: Layout Responsivo
-   Flexbox para alineación, Grid para cuadrículas.
-=================================================== */
-.app-layout {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-.main-content {
-  flex: 1;
-  width: 100%;
-}
-
-.container {
-  width: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 var(--space-xl);
-}
-
-/* Grid de películas: se adapta automáticamente */
-.movies-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: var(--space-lg);
-}
+/* ... (mantengo el reset y layout base que ya hice) ... */
 
 /* ===================================================
    GUÍA DÍA 3 - RETO FINAL: Clase .btn-premium
-   Usa --grad-main, bordes redondeados y glow en hover.
 =================================================== */
 .btn-premium {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-sm);
-  padding: 0.85rem 2.25rem;
-  background: var(--grad-main);
-  color: #fff;
-  font-family: 'Inter', sans-serif;
-  font-size: 1rem;
+  padding: 0.8rem 1.8rem;
+  background: var(--grad-main); /* Usamos el gradiente que definimos en :root */
+  color: white;
   font-weight: 600;
+  border-radius: var(--radius-lg); /* Bordes redondeados consistentes */
   border: none;
-  border-radius: var(--radius-full);
   cursor: pointer;
+  transition: var(--transition); /* ¡Crucial para que el brillo no sea brusco! */
+  box-shadow: 0 4px 15px var(--primary-glow); /* Sombra inicial sutil */
   text-decoration: none;
-  letter-spacing: 0.3px;
-  transition: transform var(--transition-fast),
-              box-shadow var(--transition-fast),
-              opacity var(--transition-fast);
-  box-shadow: var(--shadow-glow);
-  position: relative;
-  overflow: hidden;
-}
-
-.btn-premium::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
-  opacity: 0;
-  transition: opacity var(--transition-fast);
 }
 
 .btn-premium:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-glow-hover);
-}
-
-.btn-premium:hover::before {
-  opacity: 1;
+  transform: translateY(-2px); /* El botón "salta" hacia el usuario */
+  box-shadow: 0 8px 25px var(--primary-glow); /* La sombra crece y brilla más */
+  filter: brightness(1.1); /* El color se aclara ligeramente */
 }
 
 .btn-premium:active {

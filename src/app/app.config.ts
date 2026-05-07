@@ -12,6 +12,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
     // Guía Día 2 - Paso 1: Motor HTTP habilitado + Interceptor registrado
-    provideHttpClient(withInterceptors([apiInterceptor]))
+    provideHttpClient(withFetch(), withInterceptors([apiInterceptor]))
   ]
 };

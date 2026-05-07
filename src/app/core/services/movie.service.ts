@@ -11,19 +11,14 @@ import { Movie, MovieDetail, MovieResponse } from '../models/movie.model';
  * de comunicarse con la API de TMDB. Los componentes (Home, Peliculas, etc.)
  * solo se preocupan de MOSTRAR datos, no de dónde vienen.
  */
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' }) // Disponible en toda la app
 export class MovieService {
-  private http = inject(HttpClient);
-  private apiUrl = environment.tmdbApiUrl;
-  private imageUrl = environment.tmdbImageUrl;
+  private http = inject(HttpClient); // Inyectamos el motor HTTP
+  private apiUrl = environment.baseUrl;
 
-  /**
-   * Obtiene las películas en tendencia (trending) de la semana
-   */
-  getTrendingMovies(): Observable<MovieResponse> {
-    return this.http.get<MovieResponse>(`${this.apiUrl}/trending/movie/week`);
+  getTrendingMovies() {
+    // Retornamos un Observable (una promesa de que llegarán datos)
+    return this.http.get<MovieResponse>(`${this.apiUrl}/trending/movie/day`);
   }
 
   /**

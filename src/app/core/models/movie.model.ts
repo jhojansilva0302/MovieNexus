@@ -1,27 +1,17 @@
-// Interfaz que describe una sola película de TMDB
 export interface Movie {
   id: number;
   title: string;
-  original_title: string;
   overview: string;
-  poster_path: string | null;
-  backdrop_path: string | null;
-  release_date: string;
+  poster_path: string;
+  backdrop_path: string;
   vote_average: number;
-  vote_count: number;
-  popularity: number;
-  genre_ids: number[];
-  adult: boolean;
-  original_language: string;
-  video: boolean;
+  release_date: string;
 }
 
-// Interfaz que describe la respuesta paginada de TMDB
 export interface MovieResponse {
+  results: Movie[]; // La API nos devuelve una lista de películas
   page: number;
-  results: Movie[];
   total_pages: number;
-  total_results: number;
 }
 
 // Interfaz para el detalle completo de una película
