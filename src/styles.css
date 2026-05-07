@@ -1,34 +1,233 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+/* ===================================================
+   GUÍA DÍA 3 - PASO 1: Sistema de Diseño Premium
+   Single Source of Truth: todas las variables en un lugar.
+   Si el cliente dice "cambia el azul", solo editas aquí.
+=================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-    /* Colors */
-    --primary-color: #38bdf8;
-    --secondary-color: #f43f5e;
-    --bg-dark: #0b1120;
-    --bg-surface: #1e293b;
-    --text-main: #ffffff;
-    --text-muted: #94a3b8;
+  /* — Colores principales — */
+  --primary: #38bdf8;
+  --primary-dark: #0ea5e9;
+  --secondary: #f43f5e;
+  --accent: #a78bfa;
 
-    /* Gradients */
-    --gradient-primary: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  /* — Fondos — */
+  --bg-dark: #0b1120;
+  --bg-surface: #1e293b;
+  --bg-card: #162032;
+  --bg-glass: rgba(30, 41, 59, 0.6);
 
-    /* Effects */
-    --shadow-glow: 0 0 20px rgba(56, 189, 248, 0.3);
-    --transition-fast: 0.3s ease;
+  /* — Texto — */
+  --text-main: #f1f5f9;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+
+  /* — Gradientes — */
+  --grad-main: linear-gradient(135deg, var(--primary), var(--secondary));
+  --grad-accent: linear-gradient(135deg, var(--accent), var(--primary));
+  --grad-dark: linear-gradient(180deg, var(--bg-dark), var(--bg-surface));
+
+  /* — Alias de compatibilidad — */
+  --primary-color: var(--primary);
+  --secondary-color: var(--secondary);
+  --gradient-primary: var(--grad-main);
+
+  /* — Espaciado — */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+
+  /* — Border radius — */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+
+  /* — Sombras — */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.4);
+  --shadow-glow: 0 0 20px rgba(56, 189, 248, 0.35);
+  --shadow-glow-hover: 0 0 35px rgba(56, 189, 248, 0.55);
+
+  /* — Transiciones — */
+  --transition-fast: 0.2s ease;
+  --transition-base: 0.3s ease;
+  --transition-slow: 0.5s ease;
+
+  /* — Glassmorphism — */
+  --glass-bg: rgba(14, 22, 40, 0.75);
+  --glass-border: rgba(56, 189, 248, 0.12);
+  --glass-blur: blur(12px);
 }
 
+/* ===================================================
+   RESET Y BASE
+=================================================== */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-    font-family: 'Inter', sans-serif;
-    background-color: var(--bg-dark);
-    color: var(--text-main);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
 }
 
+/* ===================================================
+   GUÍA DÍA 3 - PASO 2: Layout Responsivo
+   Flexbox para alineación, Grid para cuadrículas.
+=================================================== */
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  width: 100%;
+}
+
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--space-xl);
+}
+
+/* Grid de películas: se adapta automáticamente */
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--space-lg);
+}
+
+/* ===================================================
+   GUÍA DÍA 3 - RETO FINAL: Clase .btn-premium
+   Usa --grad-main, bordes redondeados y glow en hover.
+=================================================== */
+.btn-premium {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: 0.85rem 2.25rem;
+  background: var(--grad-main);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  text-decoration: none;
+  letter-spacing: 0.3px;
+  transition: transform var(--transition-fast),
+              box-shadow var(--transition-fast),
+              opacity var(--transition-fast);
+  box-shadow: var(--shadow-glow);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-premium::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.btn-premium:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-glow-hover);
+}
+
+.btn-premium:hover::before {
+  opacity: 1;
+}
+
+.btn-premium:active {
+  transform: translateY(-1px);
+}
+
+/* Variante secundaria */
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: 0.85rem 2.25rem;
+  background: transparent;
+  color: var(--primary);
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  border: 1.5px solid var(--primary);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.btn-outline:hover {
+  background: var(--primary);
+  color: #000;
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-2px);
+}
+
+/* ===================================================
+   UTILIDADES GLOBALES
+=================================================== */
+.gradient-text {
+  background: var(--grad-main);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.glass-card {
+  background: var(--bg-glass);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.fade-in-up { animation: fadeInUp 0.6s ease-out both; }
+.fade-in    { animation: fadeIn 0.5s ease-out both; }
+
+/* Scrollbar personalizado */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-dark); }
+::-webkit-scrollbar-thumb {
+  background: var(--bg-surface);
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover { background: var(--primary-dark); }

@@ -1,20 +1,32 @@
+/* ===================================================
+   GUÍA DÍA 3 - PASO 3: Glassmorphism en el Header
+   backdrop-filter: blur(12px) = efecto de cristal esmerilado
+=================================================== */
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem 5%;
+    padding: 1.25rem 5%;
     position: sticky;
     top: 0;
     z-index: 100;
-    background-color: rgba(11, 17, 32, 0.8);
-    backdrop-filter: blur(10px);
+    /* Glassmorphism: fondo translúcido + desenfoque */
+    background: var(--glass-bg, rgba(14, 22, 40, 0.75));
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--glass-border, rgba(56, 189, 248, 0.12));
+    transition: background var(--transition-base, 0.3s ease);
 }
 
 .logo h1 {
     font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--primary-color);
+    font-weight: 800;
+    background: var(--grad-main, linear-gradient(135deg, #38bdf8, #f43f5e));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     letter-spacing: -0.5px;
+    cursor: default;
 }
 
 .nav ul {
@@ -24,13 +36,41 @@
 }
 
 .nav a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
     text-decoration: none;
     color: var(--text-muted);
     font-weight: 500;
     font-size: 0.95rem;
-    transition: color 0.3s ease;
+    transition: color var(--transition-fast, 0.2s ease);
 }
 
-.nav a:hover, .nav a.active {
+.nav a:hover,
+.nav a.active {
     color: var(--text-main);
 }
+
+/* Barrita de carga hover */
+.nav-bar {
+    display: block;
+    height: 2px;
+    width: 100%;
+    border-radius: 2px;
+    background: var(--grad-main, linear-gradient(135deg, #38bdf8, #f43f5e));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: none;
+}
+
+.nav a:hover .nav-bar {
+    animation: nav-fill 0.7s ease-in-out forwards;
+}
+
+@keyframes nav-fill {
+    0%   { transform: scaleX(0); opacity: 1; }
+    85%  { transform: scaleX(1); opacity: 1; }
+    100% { transform: scaleX(1); opacity: 1; }
+}
+
