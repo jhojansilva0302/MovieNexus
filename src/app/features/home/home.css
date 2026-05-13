@@ -1,114 +1,12 @@
-/* ===================================================
-   HERO SECTION - ESTILO NETFLIX PREMIUM (DARK)
-=================================================== */
-.hero-netflix {
-  position: relative;
-  height: 85vh;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.9) 30%, transparent 70%), 
-                    url('https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?q=80&w=2070&auto=format&fit=crop');
-  background-size: cover;
-  background-position: center;
-  margin-bottom: -100px; /* Overlap con el contenido */
+.home-sections {
+    margin-top: -100px;
+    position: relative;
+    z-index: 10;
+    padding-bottom: 5rem;
+    background: linear-gradient(to bottom, transparent, #141414 150px);
 }
 
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, #141414 5%, transparent 50%);
-}
-
-.hero-content-netflix {
-  position: relative;
-  z-index: 10;
-  padding: 0 4%;
-  max-width: 800px;
-}
-
-.hero-title-netflix {
-  font-size: clamp(2rem, 5vw, 4.5rem);
-  font-weight: 800;
-  color: #ffffff !important;
-  margin-bottom: 1rem;
-  line-height: 1.1;
-  letter-spacing: -2px;
-  text-shadow: 0 4px 15px rgba(0,0,0,0.5);
-}
-
-.hero-description {
-  font-size: 1.2rem;
-  color: #e5e5e5 !important;
-  max-width: 600px;
-  line-height: 1.6;
-  margin-bottom: 2rem;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-}
-
-/* Botones estilo Netflix */
-.hero-actions {
-  display: flex;
-  gap: 12px;
-}
-
-.btn-netflix {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 28px;
-  border-radius: 4px;
-  font-weight: 700;
-  font-size: 1.1rem;
-  text-decoration: none;
-  transition: all 0.2s ease;
-  cursor: pointer;
-}
-
-.btn-red {
-  background-color: #E50914;
-  color: white;
-  border: none;
-}
-
-.btn-red:hover {
-  background-color: #ff0f1a;
-  transform: scale(1.05);
-}
-
-.btn-gray {
-  background-color: rgba(109, 109, 110, 0.7);
-  color: white;
-  border: none;
-  backdrop-filter: blur(10px);
-}
-
-.btn-gray:hover {
-  background-color: rgba(109, 109, 110, 0.9);
-  transform: scale(1.05);
-}
-
-.hero-vignette {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 200px;
-  background: linear-gradient(to top, #141414, transparent);
-}
-
-/* Animación de entrada */
-.fade-in {
-    animation: netflixFadeIn 1.5s ease-out forwards;
-}
-
-@keyframes netflixFadeIn {
-    from {
-        opacity: 0;
-        transform: scale(1.1);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+.loading-hero {
+    height: 85vh;
+    background-color: #141414;
 }
