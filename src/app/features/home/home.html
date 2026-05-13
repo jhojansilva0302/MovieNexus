@@ -1,11 +1,26 @@
-<section class="hero">
-  <div class="hero-content fade-in-up">
-    <h1 class="hero-title">Bienvenido a <span class="gradient-text">MovieNexus</span></h1>
-    <p class="hero-subtitle">
-      Explora las películas más populares, busca tus favoritas y mantente al día con los últimos estrenos.
-    </p>
-    <a class="btn-premium" routerLink="/peliculas">
-      Empezar a Explorar
-    </a>
+<!-- Verificamos si ya llegó la información de la API usando el control flow -->
+@if (featuredMovie(); as movie) {
+  <!-- Padre (Home) pasándole la variable 'movie' al Hijo (Hero) -->
+  <app-hero [movie]="movie"></app-hero>
+} @else {
+  <!-- Mientras llega la información, mostramos un estado de carga (Skeleton) -->
+  <div class="loading-hero">Cargando...</div>
+}
+
+<main class="container">
+  <h2 class="section-title">Tendencias hoy</h2>
+  
+  <div class="movies-grid">
+    @for (movie of trendingMovies; track movie.id) {
+      <div class="movie-card">
+        @if (movie.poster_path) {
+          <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" [alt]="movie.title" loading="lazy">
+        }
+        <div class="movie-card-overlay">
+          <p class="card-title">{{ movie.title }}</p>
+          <span class="card-rating">⭐ {{ movie.vote_average | number:'1.1-1' }}</span>
+        </div>
+      </div>
+    }
   </div>
-</section>
+</main>

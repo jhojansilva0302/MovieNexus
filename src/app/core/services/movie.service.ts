@@ -15,6 +15,7 @@ import { Movie, MovieDetail, MovieResponse } from '../models/movie.model';
 export class MovieService {
   private http = inject(HttpClient); // Inyectamos el motor HTTP
   private apiUrl = environment.baseUrl;
+  private imageUrl = environment.tmdbImageUrl;
 
   getTrendingMovies() {
     // Retornamos un Observable (una promesa de que llegarán datos)
