@@ -61,7 +61,7 @@ export class MovieService {
   /**
    * Obtiene el detalle completo de una película por su ID
    */
-  getMovieById(id: number): Observable<MovieDetail> {
+  getMovieById(id: string | number): Observable<MovieDetail> {
     return this.http.get<MovieDetail>(`${this.apiUrl}/movie/${id}`);
   }
 

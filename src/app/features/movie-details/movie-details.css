@@ -1,0 +1,70 @@
+.details-container {
+    position: relative;
+    min-height: 100vh;
+    background-color: #141414;
+    color: white;
+}
+
+.backdrop-wrapper {
+    position: relative;
+    height: 70vh;
+    width: 100%;
+}
+
+.backdrop-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.backdrop-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, #141414 0%, transparent 100%);
+}
+
+.content-wrapper {
+    position: relative;
+    z-index: 10;
+    margin-top: -150px;
+    padding: 2rem;
+    max-width: 800px;
+}
+
+.movie-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+.overview {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #e5e5e5;
+    margin-bottom: 2rem;
+}
+
+.back-button {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.back-button:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-size: 1.5rem;
+}

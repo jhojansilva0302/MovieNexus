@@ -1,9 +1,13 @@
 import { Routes } from '@angular/router';
-import { Home } from './features/home/home';
 
 export const routes: Routes = [
-    { path: '', component: Home },
-    { path: 'peliculas', component: Home }, // Placeholder
-    { path: 'buscar', component: Home },    // Placeholder
-    { path: '**', redirectTo: '' }          // Wildcard
+  {
+    path: '',
+    loadComponent: () => import('./features/home/home').then(m => m.Home)
+  },
+  {
+    path: 'movie/:id',
+    loadComponent: () => import('./features/movie-details/movie-details').then(m => m.MovieDetails)
+  },
+  { path: '**', redirectTo: '' }
 ];

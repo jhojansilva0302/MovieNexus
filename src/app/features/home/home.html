@@ -1,18 +1,28 @@
+<!-- Verificamos si ya llegó la información de la API usando el control flow -->
 @if (featuredMovie(); as movie) {
   <app-hero [movie]="movie"></app-hero>
 } @else {
-  <div class="loading-hero"></div>
+  <div class="loading-hero">Cargando...</div>
 }
 
-<div class="home-sections">
-  <!-- Pasamos los datos de las Signals a los componentes hijos -->
-  <app-movie-slider
-    title="Tendencias de Hoy"
-    [movies]="trendingMovies()"
-  ></app-movie-slider>
+<main class="home-content">
+  <!-- Carrusel 1: Películas Populares -->
+  <section class="movie-section">
+    <h2 class="section-title">Populares en MovieNexus</h2>
+    <div class="movie-carousel">
+      @for (movie of popularMovies(); track movie.id) {
+        <app-movie-card [movie]="movie"></app-movie-card>
+      }
+    </div>
+  </section>
 
-  <app-movie-slider
-    title="Las más Populares"
-    [movies]="popularMovies()"
-  ></app-movie-slider>
-</div>
+  <!-- Carrusel 2: Mejor Valoradas -->
+  <section class="movie-section">
+    <h2 class="section-title">Aclamadas por la Crítica</h2>
+    <div class="movie-carousel">
+      @for (movie of topRatedMovies(); track movie.id) {
+        <app-movie-card [movie]="movie"></app-movie-card>
+      }
+    </div>
+  </section>
+</main>
