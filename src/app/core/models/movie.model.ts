@@ -9,7 +9,7 @@ export interface Movie {
   vote_count?: number;
   release_date: string;
   genre_ids?: number[];
-  runtime?: number; // Duración en minutos
+  runtime?: number | null; // Duración en minutos
   genres?: { id: number; name: string }[]; // Lista de géneros
 }
 
