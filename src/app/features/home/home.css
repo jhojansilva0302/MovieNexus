@@ -45,40 +45,21 @@
 /* Carrusel Horizontal estilo Netflix */
 .movie-carousel {
     display: flex;
-    gap: 12px;
+    gap: 10px; /* Gap más estrecho estilo Netflix */
     overflow-x: auto;
     overflow-y: hidden;
-    padding: 20px 0;
+    padding: 40px 0; /* Espacio extra para el zoom sin cortes */
     scroll-behavior: smooth;
-    scrollbar-width: none; /* Firefox */
+    scrollbar-width: none;
 }
 
 .movie-carousel::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Edge */
+    display: none;
 }
 
-/* Ajuste de las tarjetas para el carrusel */
-.movie-carousel .movie-card {
+/* Las tarjetas se gestionan en su propio componente movie-card */
+.movie-carousel app-movie-card {
     flex: 0 0 auto;
-    width: 200px; /* Ancho fijo para las tarjetas del carrusel */
-    aspect-ratio: 2/3;
-    position: relative;
-    border-radius: 4px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: transform 0.3s ease, z-index 0.3s ease;
-}
-
-.movie-carousel .movie-card:hover {
-    transform: scale(1.1);
-    z-index: 20;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-}
-
-.movie-carousel .movie-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
 }
 
 .loading-hero {

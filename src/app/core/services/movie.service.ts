@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Movie, MovieDetail, MovieResponse } from '../models/movie.model';
+import { CreditsResponse } from '../models/cast.model';
 
 /**
  * Servicio Especializado - Mensajero de Películas (Guía Día 2 - Paso 4)
@@ -63,6 +64,10 @@ export class MovieService {
    */
   getMovieById(id: string | number): Observable<MovieDetail> {
     return this.http.get<MovieDetail>(`${this.apiUrl}/movie/${id}`);
+  }
+
+  getMovieCredits(id: string | number): Observable<CreditsResponse> {
+    return this.http.get<CreditsResponse>(`${this.apiUrl}/movie/${id}/credits`);
   }
 
   /**

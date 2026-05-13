@@ -34,15 +34,57 @@
 .movie-title {
     font-size: 3.5rem;
     font-weight: 800;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+.genres {
+    display: flex;
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+}
+
+.genre-tag {
+    background-color: rgba(229, 9, 20, 0.2);
+    color: #ff4d4d;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border: 1px solid rgba(229, 9, 20, 0.4);
 }
 
 .overview {
     font-size: 1.2rem;
     line-height: 1.6;
     color: #e5e5e5;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
+    max-width: 800px;
+}
+
+.movie-cast {
+    margin-bottom: 4rem;
+}
+
+.section-subtitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #fff;
+}
+
+.cast-track {
+    display: flex;
+    gap: 1.2rem;
+    overflow-x: auto;
+    padding: 1rem 0;
+    scrollbar-width: none;
+}
+
+.cast-track::-webkit-scrollbar {
+    display: none;
 }
 
 .back-button {
