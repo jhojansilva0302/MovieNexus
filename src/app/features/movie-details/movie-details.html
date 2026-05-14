@@ -17,18 +17,20 @@
       </div>
 
       <p class="overview">{{ data.details.overview }}</p>
+    </div>
 
-      <!-- Mostrar Elenco usando data.credits -->
-      <section class="movie-cast">
-        <h2 class="section-subtitle">Elenco Principal</h2>
-        <div class="cast-track">
-          <!-- El pipe slice:0:15 recorta la lista a los primeros 15 actores -->
-          @for (actor of data.credits.cast | slice:0:15; track actor.id) {
-            <app-cast-card [actor]="actor"></app-cast-card>
-          }
-        </div>
-      </section>
+    <!-- Mostrar Elenco usando data.credits (Ahora fuera del content-wrapper para ser full width) -->
+    <section class="movie-cast">
+      <h2 class="section-subtitle">Elenco Principal</h2>
+      <div class="cast-track">
+        <!-- El pipe slice:0:15 recorta la lista a los primeros 15 actores -->
+        @for (actor of data.credits.cast | slice:0:15; track actor.id) {
+          <app-cast-card [actor]="actor"></app-cast-card>
+        }
+      </div>
+    </section>
 
+    <div class="content-wrapper">
       <button class="back-button" onclick="history.back()">← Volver</button>
     </div>
   </div>

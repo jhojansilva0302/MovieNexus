@@ -27,7 +27,7 @@
     position: relative;
     z-index: 10;
     margin-top: -150px;
-    padding: 2rem;
+    padding: 0 4%;
     max-width: 800px;
 }
 
@@ -64,6 +64,8 @@
 
 .movie-cast {
     margin-bottom: 4rem;
+    padding: 0 4%;
+    width: 100%;
 }
 
 .section-subtitle {
@@ -81,6 +83,10 @@
     overflow-x: auto;
     padding: 1rem 0;
     scrollbar-width: none;
+    /* Permitir que los elementos se vean hasta el borde al scrollear */
+    margin: 0 -4%;
+    padding-left: 4%;
+    padding-right: 4%;
 }
 
 .cast-track::-webkit-scrollbar {

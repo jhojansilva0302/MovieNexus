@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnInit } from '@angular/core';
+import { Component, inject, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MovieService } from '../../core/services/movie.service';
 import { MovieDetail } from '../../core/models/movie.model';
@@ -13,7 +13,7 @@ import { CreditsResponse } from '../../core/models/cast.model';
   templateUrl: './movie-details.html',
   styleUrl: './movie-details.css'
 })
-export class MovieDetails implements OnInit {
+export class MovieDetails implements OnInit, OnChanges {
   private movieService = inject(MovieService);
 
   @Input() id!: string;
@@ -22,6 +22,17 @@ export class MovieDetails implements OnInit {
   movieData$!: Observable<{ details: MovieDetail; credits: CreditsResponse }>;
 
   ngOnInit(): void {
+    this.loadMovieData();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    // Si el ID cambia, volvemos a cargar los datos
+    if (changes['id'] && !changes['id'].firstChange) {
+      this.loadMovieData();
+    }
+  }
+
+  private loadMovieData(): void {
     if (this.id) {
       // forkJoin dispara ambas peticiones al mismo tiempo y crea un objeto con los dos resultados
       this.movieData$ = forkJoin({

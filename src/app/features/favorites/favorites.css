@@ -1,0 +1,102 @@
+.favorites-container {
+  padding: 8rem 4% 4rem;
+  min-height: 100vh;
+  background-color: #141414;
+  color: white;
+}
+
+.favorites-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.favorites-title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.favorites-title span {
+  color: #e50914;
+}
+
+.favorites-subtitle {
+  color: #aaa;
+  font-size: 1.1rem;
+}
+
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Empty State Styles */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.empty-icon {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 2rem;
+  opacity: 0.2;
+}
+
+.empty-icon svg {
+  fill: white;
+}
+
+.empty-state h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.empty-state p {
+  color: #aaa;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.explore-btn {
+  background-color: #0071eb;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.explore-btn:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 113, 235, 0.3);
+}
+
+@media (max-width: 768px) {
+  .favorites-title {
+    font-size: 2.2rem;
+  }
+  
+  .movies-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1rem;
+  }
+}
