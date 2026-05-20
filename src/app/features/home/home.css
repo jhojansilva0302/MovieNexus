@@ -71,3 +71,54 @@
     color: #fff;
     font-size: 1.5rem;
 }
+
+/* Sección de Catálogo con Carga Infinita (Guía Día 10) */
+.catalog-section {
+    padding: 0 4%;
+    margin-top: 2rem;
+    margin-bottom: 4rem;
+}
+
+.movies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px 15px;
+    margin-top: 1.5rem;
+    perspective: 1000px; /* Para micro-animaciones premium en las tarjetas */
+}
+
+.infinite-anchor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 3rem 0;
+    color: #a3a3a3;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    width: 100%;
+    min-height: 120px;
+    transition: all 0.3s ease;
+}
+
+.infinite-spinner {
+    width: 42px;
+    height: 42px;
+    border: 3px solid rgba(229, 9, 20, 0.15);
+    border-top: 3px solid var(--primary, #e50914);
+    border-radius: 50%;
+    animation: spin 0.8s cubic-bezier(0.6, 0.2, 0.1, 1) infinite;
+    box-shadow: 0 0 15px rgba(229, 9, 20, 0.35);
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
