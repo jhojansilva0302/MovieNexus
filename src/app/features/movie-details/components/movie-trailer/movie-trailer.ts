@@ -1,4 +1,6 @@
-import { Component, inject, Input, OnInit, signal } from '@angular/core';
+import { Component, inject, Input, OnInit, signal, HostListener } from '@angular/core';
+
+// HostListener method moved inside class
 import { CommonModule } from '@angular/common';
 import { MovieService } from '../../../../core/services/movie.service';
 import { SafePipe } from '../../../../shared/pipes/safe.pipe';
@@ -9,7 +11,7 @@ import { SafePipe } from '../../../../shared/pipes/safe.pipe';
   imports: [CommonModule, SafePipe],
   template: `
     @if (trailerKey()) {
-      <div class="trailer-wrapper">
+      <div class="trailer-wrapper" [class.cinema]="isCinemaMode()">
         <iframe
           [src]="'https://www.youtube.com/embed/' + trailerKey() | safe"
           title="Tráiler Oficial"
@@ -18,6 +20,9 @@ import { SafePipe } from '../../../../shared/pipes/safe.pipe';
           allowfullscreen
           class="trailer-iframe">
         </iframe>
+        <button class="cinema-toggle" (click)="toggleCinema()">
+          {{ isCinemaMode() ? 'Salir del modo cine' : 'Ver en modo cine' }}
+        </button>
       </div>
     } @else {
       <div class="no-trailer">
@@ -33,6 +38,7 @@ export class MovieTrailer implements OnInit {
 
   @Input() movieId!: number;
   trailerKey = signal<string | null>(null);
+  isCinemaMode = signal(false);
 
   ngOnInit(): void {
     if (this.movieId) {
@@ -48,5 +54,14 @@ export class MovieTrailer implements OnInit {
         }
       });
     }
+  @HostListener('document:keydown.escape')
+  onEsc(): void {
+    if (this.isCinemaMode()) {
+      this.toggleCinema();
+    }
+  }
+
+  toggleCinema(): void {
+    this.isCinemaMode.update(v => !v);
   }
 }

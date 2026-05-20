@@ -7,6 +7,43 @@
   background: #000;
 }
 
+/* Cinematic full-screen mode */
+.trailer-wrapper.cinema {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  padding: 0;
+  border-radius: 0;
+  z-index: 1000;
+  background: #000;
+}
+
+.trailer-wrapper.cinema .cinema-toggle {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1001;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.cinema-toggle {
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
 .trailer-iframe {
   position: absolute;
   top: 0;
