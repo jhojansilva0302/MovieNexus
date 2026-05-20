@@ -116,3 +116,79 @@
     height: 100vh;
     font-size: 1.5rem;
 }
+
+/* === Sección de Sinopsis === */
+.movie-info {
+    margin-bottom: 3rem;
+}
+
+.movie-info h2 {
+    font-size: 1.5rem;
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+}
+
+/* === Sección de Tráiler === */
+.trailer-section {
+    margin-bottom: 3rem;
+}
+
+.trailer-section h2 {
+    font-size: 1.5rem;
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+}
+
+/* Placeholders para Deferrable Views */
+.trailer-placeholder {
+    height: 400px;
+    background: rgba(255, 255, 255, 0.03);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    border: 1px dashed rgba(255, 255, 255, 0.15);
+    color: #888;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.trailer-placeholder:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(229, 9, 20, 0.4);
+    color: #fff;
+}
+
+.cast-placeholder {
+    height: 200px;
+    background: rgba(255, 255, 255, 0.03);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    border: 1px dashed rgba(255, 255, 255, 0.15);
+    color: #888;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    margin: 0 4%;
+}
+
+.cast-placeholder:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(229, 9, 20, 0.4);
+    color: #fff;
+}
+
+.defer-spinner {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+    color: #e50914;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+

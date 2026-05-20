@@ -71,6 +71,16 @@ export class MovieService {
   }
 
   /**
+   * Obtiene los videos (tráilers, teasers, etc.) de una película.
+   * @param id ID de la película en TMDB
+   */
+  getMovieVideos(id: string | number) {
+    return this.http.get<{ results: Array<{ key: string; site: string; type: string; name: string }> }>(
+      `${this.apiUrl}/movie/${id}/videos`
+    );
+  }
+
+  /**
    * Construye la URL completa de una imagen de TMDB
    * @param path - El path que devuelve la API (ej: /abc123.jpg)
    * @param size - El tamaño deseado (w200, w500, w780, original)
