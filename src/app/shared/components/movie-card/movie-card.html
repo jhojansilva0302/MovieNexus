@@ -1,6 +1,6 @@
 <div class="movie-card" [routerLink]="['/movie', movie.id]">
   @if (movie.poster_path) {
-    <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" [alt]="movie.title" loading="lazy">
+    <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" [alt]="movie.title" loading="lazy" [style.view-transition-name]="'movie-poster-' + movie.id">
   }
 
   <!-- Botón de Favoritos -->

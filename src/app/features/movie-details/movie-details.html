@@ -7,13 +7,33 @@
     </div>
 
     <div class="content-wrapper">
-      <h1 class="movie-title">{{ data.details.title }}</h1>
-      
-      <!-- Mostrar Géneros -->
-      <div class="genres">
-        @for (genre of data.details.genres; track genre.id) {
-          <span class="genre-tag">{{ genre.name }}</span>
+      <div class="movie-header-flex">
+        @if (data.details.poster_path) {
+          <img
+            [src]="'https://image.tmdb.org/t/p/w500' + data.details.poster_path"
+            [alt]="data.details.title"
+            class="poster-img"
+            [style.view-transition-name]="'movie-poster-' + data.details.id">
         }
+        <div class="movie-header-info">
+          <h1 class="movie-title">{{ data.details.title }}</h1>
+          
+          <!-- Metadatos de la Película -->
+          <div class="meta-info">
+            <span class="rating">⭐ {{ data.details.vote_average | number:'1.1-1' }}</span>
+            <span class="release-year">{{ data.details.release_date | date:'yyyy' }}</span>
+            @if (data.details.runtime) {
+              <span class="runtime">⏰ {{ data.details.runtime }} min</span>
+            }
+          </div>
+
+          <!-- Mostrar Géneros -->
+          <div class="genres">
+            @for (genre of data.details.genres; track genre.id) {
+              <span class="genre-tag">{{ genre.name }}</span>
+            }
+          </div>
+        </div>
       </div>
 
       <section class="movie-info">
