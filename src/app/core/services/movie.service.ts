@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, delay } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Movie, MovieDetail, MovieResponse } from '../models/movie.model';
 import { CreditsResponse } from '../models/cast.model';
@@ -20,7 +20,7 @@ export class MovieService {
 
   getTrendingMovies() {
     // Retornamos un Observable (una promesa de que llegarán datos)
-    return this.http.get<MovieResponse>(`${this.apiUrl}/trending/movie/day`);
+    return this.http.get<MovieResponse>(`${this.apiUrl}/trending/movie/day`).pipe(delay(2000));
   }
 
   /**
@@ -29,7 +29,7 @@ export class MovieService {
   getPopularMovies(page: number = 1): Observable<MovieResponse> {
     return this.http.get<MovieResponse>(`${this.apiUrl}/movie/popular`, {
       params: { page: page.toString() }
-    });
+    }).pipe(delay(2000));
   }
 
   /**
@@ -38,7 +38,7 @@ export class MovieService {
   getTopRatedMovies(page: number = 1): Observable<MovieResponse> {
     return this.http.get<MovieResponse>(`${this.apiUrl}/movie/top_rated`, {
       params: { page: page.toString() }
-    });
+    }).pipe(delay(2000));
   }
 
   /**

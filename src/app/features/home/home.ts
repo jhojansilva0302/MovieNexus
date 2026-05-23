@@ -4,11 +4,14 @@ import { MovieService } from '../../core/services/movie.service';
 import { HeroComponent } from './components/hero/hero';
 import { MovieCard } from '../../shared/components/movie-card/movie-card';
 import { Movie } from '../../core/models/movie.model';
+import { SkeletonHero } from '../../shared/components/skeleton-hero/skeleton-hero';
+import { SkeletonCard } from '../../shared/components/skeleton-card/skeleton-card';
+import { MovieSlider } from '../../shared/components/movie-slider/movie-slider';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, HeroComponent, MovieCard],
+  imports: [CommonModule, HeroComponent, MovieCard, SkeletonHero, SkeletonCard, MovieSlider],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })

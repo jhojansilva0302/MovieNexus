@@ -54,6 +54,8 @@ export class MovieTrailer implements OnInit {
         }
       });
     }
+  }
+
   @HostListener('document:keydown.escape')
   onEsc(): void {
     if (this.isCinemaMode()) {
