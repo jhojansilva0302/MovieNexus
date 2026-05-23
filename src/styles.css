@@ -3,7 +3,7 @@
    Single Source of Truth: todas las variables en un lugar.
    Si el cliente dice "cambia el azul", solo editas aquí.
 =================================================== */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800;900&display=swap');
 
 /* Reset Global */
 *, *::before, *::after {
@@ -13,28 +13,30 @@
 }
 
 html, body {
-  background-color: #141414 !important;
+  background-color: #0d0d1a !important;
   color: #ffffff !important;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Nunito', sans-serif;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
 :root {
-  /* — Premium Dark Palette (Netflix Style) — */
-  --primary: #E50914; 
-  --primary-glow: rgba(229, 9, 20, 0.4);
-  --accent: #b20710;
-  --bg-dark: #141414; /* Fondo Negro */
-  --bg-surface: #181818;
-  --bg-card: #2f2f2f;
+  /* — Paleta Xuper (Púrpura / Azul Eléctrico) — */
+  --primary: #7c3aed;
+  --primary-light: #a855f7;
+  --primary-glow: rgba(124, 58, 237, 0.45);
+  --accent: #3b82f6;
+  --accent-glow: rgba(59, 130, 246, 0.4);
+  --bg-dark: #0d0d1a;       /* Fondo Azul-Petróleo muy oscuro */
+  --bg-surface: #13132b;
+  --bg-card: #1e1e3a;
   --text-main: #ffffff;
-  --text-muted: #a3a3a3;
+  --text-muted: #a0a0c0;
 
-  /* — Gradientes Dark — */
-  --grad-main: linear-gradient(135deg, var(--primary), var(--accent));
+  /* — Gradientes Xuper — */
+  --grad-main: linear-gradient(135deg, #7c3aed 0%, #3b82f6 100%);
   --grad-hero: linear-gradient(to top, var(--bg-dark) 0%, transparent 100%);
-  --grad-overlay: linear-gradient(to right, rgba(0,0,0,0.9) 0%, transparent 60%);
+  --grad-overlay: linear-gradient(to right, rgba(13,13,26,0.95) 0%, transparent 65%);
 
   /* — Alias de compatibilidad — */
   --primary-color: var(--primary);
@@ -47,8 +49,8 @@ html, body {
   --spacing-sm: 0.5rem;
   --spacing-md: 1rem;
   --spacing-lg: 2rem;
-  --radius-sm: 4px;
-  --radius-lg: 8px;
+  --radius-sm: 6px;
+  --radius-lg: 12px;
 
   /* — Transiciones — */
   --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -98,25 +100,26 @@ html, body {
   justify-content: center;
   gap: 0.5rem;
   padding: 0.8rem 2rem;
-  background-color: #ffffff;
-  color: #000000;
+  background: var(--grad-main);
+  color: #ffffff;
   border: none;
-  border-radius: 4px;
+  border-radius: 25px;
   font-size: 1.1rem;
   font-weight: 700;
+  font-family: 'Nunito', sans-serif;
   cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 15px var(--primary-glow);
 }
 
 .btn-premium:hover {
-  background-color: rgba(255, 255, 255, 0.85);
   transform: scale(1.05);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 25px var(--primary-glow);
+  filter: brightness(1.15);
 }
 
 .btn-premium:active {
-  transform: scale(0.98);
+  transform: scale(0.97);
 }
 
 /* Variante secundaria */
@@ -126,18 +129,20 @@ html, body {
   justify-content: center;
   gap: 0.5rem;
   padding: 0.8rem 2rem;
-  background-color: rgba(109, 109, 110, 0.7);
+  background-color: rgba(124, 58, 237, 0.15);
   color: #ffffff;
-  border: none;
-  border-radius: 4px;
+  border: 1px solid rgba(124, 58, 237, 0.5);
+  border-radius: 25px;
   font-size: 1.1rem;
   font-weight: 700;
+  font-family: 'Nunito', sans-serif;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
 }
 
 .btn-outline:hover {
-  background-color: rgba(109, 109, 110, 0.4);
+  background-color: rgba(124, 58, 237, 0.3);
+  border-color: var(--primary-light);
   transform: scale(1.05);
 }
 
@@ -209,13 +214,13 @@ html, body {
 
 /* Clase de utilidad reutilizable */
 .skeleton-base {
-  background: #2a2a2a;
+  background: #1e1e3a;
   background-image: linear-gradient(
     to right,
-    #2a2a2a 0%,
-    #3a3a3a 20%,
-    #2a2a2a 40%,
-    #2a2a2a 100%
+    #1e1e3a 0%,
+    #2d2d55 20%,
+    #1e1e3a 40%,
+    #1e1e3a 100%
   );
   background-repeat: no-repeat;
   background-size: 1000px 100%;

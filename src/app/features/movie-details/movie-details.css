@@ -1,7 +1,7 @@
 .details-container {
     position: relative;
     min-height: 100vh;
-    background-color: #141414;
+    background-color: #0d0d1a;
     color: white;
 }
 
@@ -20,7 +20,7 @@
 .backdrop-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, #141414 0%, transparent 100%);
+    background: linear-gradient(to top, #0d0d1a 0%, rgba(13,13,26,0.3) 100%);
 }
 
 .content-wrapper {
@@ -45,13 +45,13 @@
 }
 
 .genre-tag {
-    background-color: rgba(229, 9, 20, 0.2);
-    color: #ff4d4d;
+    background-color: rgba(124, 58, 237, 0.18);
+    color: #c084fc;
     padding: 0.3rem 0.8rem;
     border-radius: 20px;
     font-size: 0.9rem;
-    font-weight: 600;
-    border: 1px solid rgba(229, 9, 20, 0.4);
+    font-weight: 700;
+    border: 1px solid rgba(124, 58, 237, 0.4);
 }
 
 .overview {
@@ -187,7 +187,7 @@
     display: flex;
     justify-content: center;
     padding: 2rem;
-    color: #e50914;
+    color: #a855f7;
     font-weight: bold;
     letter-spacing: 1px;
 }
