@@ -69,14 +69,40 @@
   box-shadow: 0 0 25px rgba(239, 68, 68, 0.2);
 }
 
+.empty-state-icon-wrapper.jungle {
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.1);
+  border-color: rgba(16, 185, 129, 0.25);
+  box-shadow: 0 0 30px rgba(16, 185, 129, 0.25);
+  width: 110px;
+  height: 110px;
+}
+
 .empty-svg {
   width: 50%;
   height: 50%;
 }
 
-.empty-state-icon-wrapper.alien .empty-svg {
+.empty-state-icon-wrapper.alien .empty-svg,
+.empty-state-icon-wrapper.jungle .empty-svg {
   width: 65%;
   height: 65%;
+}
+
+.compass-needle {
+  transform-origin: 32px 39px;
+  animation: spinCompass 6s infinite ease-in-out;
+}
+
+@keyframes spinCompass {
+  0% { transform: rotate(0deg); }
+  10% { transform: rotate(180deg); }
+  25% { transform: rotate(120deg); }
+  40% { transform: rotate(380deg); }
+  55% { transform: rotate(240deg); }
+  70% { transform: rotate(560deg); }
+  85% { transform: rotate(440deg); }
+  100% { transform: rotate(720deg); }
 }
 
 /* Animations */

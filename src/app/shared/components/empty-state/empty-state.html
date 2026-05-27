@@ -23,6 +23,28 @@
             </linearGradient>
           </defs>
         </svg>
+      } @else if (icon === 'jungle') {
+        <svg viewBox="0 0 64 64" class="empty-svg float-animation">
+          <!-- Monstera / Tropical Leaves in background -->
+          <path d="M12 45c0-12 10-20 20-20s20 8 20 20c0 4-4 8-8 8s-6-4-12-4-8 4-12 4-8-4-8-8z" fill="#10b981" opacity="0.3" />
+          <!-- Vines / Leaves details -->
+          <path d="M8 24c4-2 8 0 10 4s0 8-4 10-8 0-10-4 0-8 4-10z" fill="#047857" opacity="0.4" />
+          <path d="M56 24c-4-2-8 0-10 4s0 8 4 10 8 0 10-4 0-8-4-10z" fill="#047857" opacity="0.4" />
+          <!-- Compass Outer Ring -->
+          <circle cx="32" cy="39" r="18" fill="#1f1f3e" stroke="#7c3aed" stroke-width="2.5" />
+          <!-- Inner Dial -->
+          <circle cx="32" cy="39" r="14" fill="#111126" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="4,2" />
+          <!-- Compass Rose / Directions -->
+          <text x="32" y="30" font-size="5" font-weight="900" fill="#a855f7" text-anchor="middle">N</text>
+          <text x="32" y="52" font-size="5" font-weight="900" fill="#a855f7" text-anchor="middle">S</text>
+          <text x="44" y="41" font-size="5" font-weight="900" fill="#a855f7" text-anchor="middle">E</text>
+          <text x="20" y="41" font-size="5" font-weight="900" fill="#a855f7" text-anchor="middle">O</text>
+          <!-- Needle (spinning wildly!) -->
+          <polygon points="32,28 35,39 32,42" fill="#ef4444" class="compass-needle" />
+          <polygon points="32,50 29,39 32,42" fill="#e2e8f0" class="compass-needle" />
+          <!-- Center Pin -->
+          <circle cx="32" cy="39" r="2.5" fill="#f59e0b" />
+        </svg>
       } @else if (icon === 'search') {
         <svg viewBox="0 0 24 24" class="empty-svg pulse-animation">
           <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>

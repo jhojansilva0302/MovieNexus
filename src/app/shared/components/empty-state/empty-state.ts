@@ -12,7 +12,7 @@ import { RouterModule } from '@angular/router';
 export class EmptyState {
   @Input({ required: true }) title!: string;
   @Input({ required: true }) message!: string;
-  @Input({ required: true }) icon!: 'heart' | 'alien' | 'search' | 'error';
+  @Input({ required: true }) icon!: 'heart' | 'alien' | 'search' | 'error' | 'jungle';
   @Input() actionText?: string;
   @Input() actionLink?: string;
 }
