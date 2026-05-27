@@ -5,12 +5,13 @@ import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/
 import { routes } from './app.routes';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { apiInterceptor } from './core/interceptors/api.interceptor';
+import { errorInterceptor } from './core/interceptors/error.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes, withComponentInputBinding(), withViewTransitions()),
     provideClientHydration(withEventReplay()),
-    // Guía Día 2 - Paso 1: Motor HTTP habilitado + Interceptor registrado
-    provideHttpClient(withFetch(), withInterceptors([apiInterceptor]))
+    // Guía Día 2 - Paso 1: Motor HTTP habilitado + Interceptores registrados
+    provideHttpClient(withFetch(), withInterceptors([apiInterceptor, errorInterceptor]))
   ]
 };
