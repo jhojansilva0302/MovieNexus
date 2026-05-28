@@ -13,7 +13,7 @@
 }
 
 html, body {
-  background-color: #0d0d1a !important;
+  background-color: #05060b !important;
   color: #ffffff !important;
   font-family: 'Nunito', sans-serif;
   overflow-x: hidden;
@@ -21,29 +21,35 @@ html, body {
 }
 
 :root {
-  /* — Paleta Xuper (Púrpura / Azul Eléctrico) — */
-  --primary: #7c3aed;
-  --primary-light: #a855f7;
-  --primary-glow: rgba(124, 58, 237, 0.45);
-  --accent: #3b82f6;
-  --accent-glow: rgba(59, 130, 246, 0.4);
-  --bg-dark: #0d0d1a;       /* Fondo Azul-Petróleo muy oscuro */
-  --bg-surface: #13132b;
-  --bg-card: #1e1e3a;
+  /* — Paleta Cyber Neon Space (Negro profundo / Cian resplandeciente / Azul eléctrico) — */
+  --primary: #00e5ff;             /* Cian Neon */
+  --primary-light: #80f0ff;       /* Cian Neon Brillante */
+  --primary-glow: rgba(0, 229, 255, 0.4);
+  --primary-dark: #009cb0;
+  --accent: #0055ff;              /* Azul Eléctrico */
+  --accent-glow: rgba(0, 85, 255, 0.35);
+  --bg-dark: #05060b;             /* Negro espacial absoluto */
+  --bg-surface: #0a0c16;          /* Contenedores oscuros */
+  --bg-card: #0d1020;             /* Tarjetas oscuras */
   --text-main: #ffffff;
-  --text-muted: #a0a0c0;
+  --text-muted: #8b9bb4;          /* Gris-azul frío suave */
 
-  /* — Gradientes Xuper — */
-  --grad-main: linear-gradient(135deg, #7c3aed 0%, #3b82f6 100%);
+  /* — Gradientes Neon — */
+  --grad-main: linear-gradient(135deg, #00e5ff 0%, #0055ff 100%);
   --grad-hero: linear-gradient(to top, var(--bg-dark) 0%, transparent 100%);
-  --grad-overlay: linear-gradient(to right, rgba(13,13,26,0.95) 0%, transparent 65%);
+  --grad-overlay: linear-gradient(to right, rgba(5,6,11,0.95) 0%, transparent 65%);
 
   /* — Alias de compatibilidad — */
   --primary-color: var(--primary);
   --secondary-color: var(--accent);
   --gradient-primary: var(--grad-main);
   --transition-fast: 0.2s ease;
-  --shadow-glow: 0 4px 20px var(--primary-glow);
+  --shadow-glow: 0 0 20px var(--primary-glow);
+
+  /* — Glassmorphism — */
+  --bg-glass: rgba(13, 16, 32, 0.6);
+  --glass-blur: blur(16px);
+  --glass-border: rgba(0, 229, 255, 0.15);
 
   /* — Espaciado y Radio — */
   --spacing-sm: 0.5rem;
@@ -51,6 +57,7 @@ html, body {
   --spacing-lg: 2rem;
   --radius-sm: 6px;
   --radius-lg: 12px;
+  --radius-full: 9999px;
 
   /* — Transiciones — */
   --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -129,9 +136,9 @@ html, body {
   justify-content: center;
   gap: 0.5rem;
   padding: 0.8rem 2rem;
-  background-color: rgba(124, 58, 237, 0.15);
+  background-color: rgba(0, 229, 255, 0.1);
   color: #ffffff;
-  border: 1px solid rgba(124, 58, 237, 0.5);
+  border: 1px solid rgba(0, 229, 255, 0.4);
   border-radius: 25px;
   font-size: 1.1rem;
   font-weight: 700;
@@ -141,7 +148,7 @@ html, body {
 }
 
 .btn-outline:hover {
-  background-color: rgba(124, 58, 237, 0.3);
+  background-color: rgba(0, 229, 255, 0.25);
   border-color: var(--primary-light);
   transform: scale(1.05);
 }
@@ -214,13 +221,13 @@ html, body {
 
 /* Clase de utilidad reutilizable */
 .skeleton-base {
-  background: #1e1e3a;
+  background: #0d1020;
   background-image: linear-gradient(
     to right,
-    #1e1e3a 0%,
-    #2d2d55 20%,
-    #1e1e3a 40%,
-    #1e1e3a 100%
+    #0d1020 0%,
+    #161d3a 20%,
+    #0d1020 40%,
+    #0d1020 100%
   );
   background-repeat: no-repeat;
   background-size: 1000px 100%;

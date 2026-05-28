@@ -31,10 +31,16 @@
             "outputMode": "server",
             "ssr": {
               "entry": "src/server.ts"
-            }
+            },
+            "serviceWorker": "ngsw-config.json"
           },
           "configurations": {
             "production": {
+              "optimization": {
+                "fonts": {
+                  "inline": false
+                }
+              },
               "budgets": [
                 {
                   "type": "initial",

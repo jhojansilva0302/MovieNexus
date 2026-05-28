@@ -1,7 +1,7 @@
 .favorites-container {
   padding: 8rem 4% 4rem;
   min-height: 100vh;
-  background-color: #141414;
+  background-color: var(--bg-dark);
   color: white;
 }
 
@@ -17,7 +17,8 @@
 }
 
 .favorites-title span {
-  color: #e50914;
+  color: var(--primary);
+  text-shadow: 0 0 15px var(--primary-glow);
 }
 
 .favorites-subtitle {
@@ -72,7 +73,7 @@
 }
 
 .explore-btn {
-  background-color: #0071eb;
+  background: var(--grad-main);
   color: white;
   border: none;
   padding: 1rem 2rem;
@@ -82,12 +83,14 @@
   cursor: pointer;
   transition: all 0.3s ease;
   text-decoration: none;
+  box-shadow: 0 4px 15px var(--primary-glow);
+  display: inline-block;
 }
 
 .explore-btn:hover {
-  background-color: #0056b3;
   transform: scale(1.05);
-  box-shadow: 0 10px 20px rgba(0, 113, 235, 0.3);
+  box-shadow: 0 8px 25px var(--primary-glow), 0 0 12px var(--accent-glow);
+  filter: brightness(1.1);
 }
 
 @media (max-width: 768px) {

@@ -1,7 +1,7 @@
 .details-container {
     position: relative;
     min-height: 100vh;
-    background-color: #0d0d1a;
+    background-color: var(--bg-dark);
     color: white;
 }
 
@@ -20,7 +20,7 @@
 .backdrop-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, #0d0d1a 0%, rgba(13,13,26,0.3) 100%);
+    background: linear-gradient(to top, var(--bg-dark) 0%, rgba(5,6,11,0.3) 100%);
 }
 
 .content-wrapper {
@@ -45,13 +45,14 @@
 }
 
 .genre-tag {
-    background-color: rgba(124, 58, 237, 0.18);
-    color: #c084fc;
+    background-color: rgba(0, 229, 255, 0.1);
+    color: var(--primary-light, #80f0ff);
     padding: 0.3rem 0.8rem;
     border-radius: 20px;
     font-size: 0.9rem;
     font-weight: 700;
-    border: 1px solid rgba(124, 58, 237, 0.4);
+    border: 1px solid rgba(0, 229, 255, 0.35);
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.1);
 }
 
 .overview {
@@ -159,7 +160,7 @@
 
 .trailer-placeholder:hover {
     background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(229, 9, 20, 0.4);
+    border-color: var(--primary);
     color: #fff;
 }
 
@@ -179,7 +180,7 @@
 
 .cast-placeholder:hover {
     background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(229, 9, 20, 0.4);
+    border-color: var(--primary);
     color: #fff;
 }
 
@@ -187,7 +188,7 @@
     display: flex;
     justify-content: center;
     padding: 2rem;
-    color: #a855f7;
+    color: var(--primary);
     font-weight: bold;
     letter-spacing: 1px;
 }

@@ -9,10 +9,10 @@
 }
 
 .empty-state-card {
-  background: rgba(30, 30, 58, 0.4);
+  background: rgba(13, 16, 32, 0.4);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(124, 58, 237, 0.25);
+  border: 1px solid rgba(0, 229, 255, 0.25);
   border-radius: 24px;
   padding: 3rem 2rem;
   max-width: 480px;
@@ -33,10 +33,10 @@
   height: 90px;
   border-radius: 50%;
   margin-bottom: 0.5rem;
-  background: rgba(124, 58, 237, 0.1);
-  border: 1px solid rgba(124, 58, 237, 0.2);
-  color: var(--primary-light, #c084fc);
-  box-shadow: 0 0 20px rgba(124, 58, 237, 0.15);
+  background: rgba(0, 229, 255, 0.08);
+  border: 1px solid rgba(0, 229, 255, 0.2);
+  color: var(--primary-light, #80f0ff);
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.15);
 }
 
 .empty-state-icon-wrapper.heart {
@@ -47,10 +47,10 @@
 }
 
 .empty-state-icon-wrapper.alien {
-  color: #a855f7;
-  background: rgba(168, 85, 247, 0.1);
-  border-color: rgba(168, 85, 247, 0.25);
-  box-shadow: 0 0 30px rgba(168, 85, 247, 0.25);
+  color: var(--primary);
+  background: rgba(0, 229, 255, 0.1);
+  border-color: rgba(0, 229, 255, 0.25);
+  box-shadow: 0 0 30px var(--primary-glow);
   width: 110px;
   height: 110px;
 }
@@ -136,7 +136,7 @@
   }
   50% {
     transform: translateY(-8px);
-    filter: drop-shadow(0 15px 10px rgba(124, 58, 237, 0.4));
+    filter: drop-shadow(0 15px 10px rgba(0, 229, 255, 0.35));
   }
 }
 
@@ -179,7 +179,7 @@
 /* Premium Button style matching Xuper design system */
 .empty-action-btn {
   font-family: 'Nunito', sans-serif;
-  background: var(--grad-main, linear-gradient(135deg, #7c3aed 0%, #3b82f6 100%));
+  background: var(--grad-main, linear-gradient(135deg, #00e5ff 0%, #0055ff 100%));
   color: #ffffff;
   border: none;
   padding: 0.85rem 2rem;
@@ -188,7 +188,7 @@
   border-radius: 30px;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
+  box-shadow: 0 4px 15px rgba(0, 229, 255, 0.4);
   text-decoration: none;
   display: inline-block;
   margin-top: 0.5rem;
@@ -196,7 +196,7 @@
 
 .empty-action-btn:hover {
   transform: translateY(-3px) scale(1.03);
-  box-shadow: 0 8px 25px rgba(124, 58, 237, 0.6), 0 0 12px rgba(59, 130, 246, 0.4);
+  box-shadow: 0 8px 25px rgba(0, 229, 255, 0.5), 0 0 12px rgba(0, 85, 255, 0.4);
 }
 
 .empty-action-btn:active {

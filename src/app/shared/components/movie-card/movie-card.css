@@ -11,7 +11,7 @@
     cursor: pointer;
     transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    background-color: #1e1e3a;
+    background-color: var(--bg-card);
 }
 
 .movie-card img {
@@ -24,7 +24,7 @@
 .movie-card:hover {
     transform: scale(1.15);
     z-index: 100;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7), 0 0 0 2px var(--primary-light);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 15px var(--primary-glow), 0 0 0 2px var(--primary);
     outline: none;
 }
 
@@ -97,8 +97,8 @@
 }
 
 .favorite-btn.active .heart-icon {
-    fill: #a855f7; /* Púrpura Xuper */
-    filter: drop-shadow(0 0 5px rgba(168, 85, 247, 0.6));
+    fill: var(--primary); /* Cian Neon */
+    filter: drop-shadow(0 0 8px var(--primary-glow));
 }
 
 .favorite-btn.active {
