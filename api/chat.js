@@ -91,7 +91,7 @@ module.exports = async (req, res) => {
     };
 
     // Llamar a la API oficial de Google Gemini
-    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent?key=${GEMINI_API_KEY}`;
 
     const response = await fetch(geminiUrl, {
       method: 'POST',
@@ -134,7 +134,7 @@ module.exports = async (req, res) => {
       data.candidates[0].content.parts[0].text
     ) {
       const rawText = data.candidates[0].content.parts[0].text;
-      
+
       try {
         const parsedResponse = JSON.parse(rawText);
         return res.status(200).json(parsedResponse);
