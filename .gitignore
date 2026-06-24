@@ -46,3 +46,8 @@ Thumbs.db
 # Angular Environments (API Keys and secrets)
 src/environments/environment.ts
 src/environments/environment.development.ts
+
+# Local environment secrets
+.env
+.env.local
+.env.*

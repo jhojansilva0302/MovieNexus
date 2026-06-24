@@ -7,6 +7,7 @@
     </div>
 
     <div class="content-wrapper">
+      <button class="back-button" onclick="history.back()">← Volver</button>
       <div class="movie-header-flex">
         @if (data.details.poster_path) {
           <img
@@ -85,9 +86,20 @@
       }
     </section>
 
-    <div class="content-wrapper">
-      <button class="back-button" onclick="history.back()">← Volver</button>
-    </div>
+    <!-- CARGA DIFERIDA: Sección de Comentarios (on viewport) -->
+    @defer (on viewport) {
+      <app-movie-comments [movieId]="data.details.id"></app-movie-comments>
+    } @placeholder (minimum 500ms) {
+      <div class="comments-placeholder">
+        <p>💬 Haz scroll para ver los comentarios y calificaciones...</p>
+      </div>
+    } @loading {
+      <div class="defer-spinner">Cargando sección de comentarios...</div>
+    } @error {
+      <p class="defer-error">Error al cargar la sección de comentarios.</p>
+    }
+
+
   </div>
 } @else {
   <div class="loading-state">Cargando detalles increíbles...</div>

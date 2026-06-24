@@ -1,0 +1,139 @@
+<!-- BOTÓN FLOTANTE PRINCIPAL -->
+<button
+  class="chat-floating-btn btn-pulse"
+  [class.btn-active]="isOpen()"
+  (click)="toggleChat()"
+  aria-label="Abrir asistente de cine Nexus AI"
+  title="Pregunta a Nexus AI">
+  @if (isOpen()) {
+    <span class="btn-close-icon">✕</span>
+  } @else {
+    <span class="btn-ai-icon">🤖</span>
+  }
+</button>
+
+<!-- PANEL DE CHAT PRINCIPAL -->
+@if (isOpen()) {
+  <div class="chat-panel-container glass-card" [class.panel-minimized]="isMinimized()" role="dialog" aria-label="Chat con Nexus AI">
+    
+    <!-- CABECERA DEL PANEL -->
+    <div class="chat-header" (click)="isMinimized() ? toggleMinimize($event) : null">
+      <div class="header-title-wrapper">
+        <span class="status-indicator"></span>
+        <h3>Nexus AI</h3>
+        <span class="header-subtitle">Asistente Cinéfilo</span>
+      </div>
+      <div class="header-controls">
+        <button
+          type="button"
+          class="header-btn"
+          (click)="clearChat($event)"
+          title="Reiniciar conversación"
+          aria-label="Reiniciar conversación">
+          🗑️
+        </button>
+        <button
+          type="button"
+          class="header-btn"
+          (click)="toggleMinimize($event)"
+          [title]="isMinimized() ? 'Expandir' : 'Minimizar'"
+          [aria-label]="isMinimized() ? 'Expandir chat' : 'Minimizar chat'">
+          @if (isMinimized()) { 🗖 } @else { 🗕 }
+        </button>
+        <button
+          type="button"
+          class="header-btn close-btn"
+          (click)="toggleChat()"
+          title="Cerrar"
+          aria-label="Cerrar chat">
+          ✕
+        </button>
+      </div>
+    </div>
+
+    <!-- CONTENIDO DEL CHAT (SOLO VISIBLE SI NO ESTÁ MINIMIZADO) -->
+    @if (!isMinimized()) {
+      <div class="chat-body" #messageContainer>
+        <div class="messages-list">
+          @for (msg of history(); track $index) {
+            <div class="message-wrapper" [class.wrapper-user]="msg.role === 'user'" [class.wrapper-model]="msg.role === 'model'">
+              
+              @if (msg.role === 'model') {
+                <div class="avatar-ai">AI</div>
+              }
+
+              <div class="message-bubble" [class.bubble-user]="msg.role === 'user'" [class.bubble-model]="msg.role === 'model'">
+                <!-- Texto del mensaje renderizado como HTML seguro -->
+                <div class="message-text" [innerHTML]="getSafeMarkdown(msg.text)"></div>
+
+                <!-- CAROUSEL DE RECOMENDACIONES DE PELÍCULAS -->
+                @if (msg.role === 'model' && msg.recommendations && msg.recommendations.length > 0) {
+                  <div class="recommendations-carousel">
+                    <p class="carousel-title">🍿 Recomendaciones de películas:</p>
+                    <div class="carousel-track">
+                      @for (movie of msg.recommendations; track movie.id) {
+                        <div class="carousel-movie-card" (click)="navigateToMovie(movie.id)">
+                          <div class="card-poster-wrapper">
+                            <img [src]="getPosterUrl(movie.poster_path)" [alt]="movie.title" loading="lazy" class="card-poster">
+                            @if (movie.vote_average) {
+                              <span class="card-rating">⭐ {{ movie.vote_average | number:'1.1-1' }}</span>
+                            }
+                          </div>
+                          <div class="card-info">
+                            <h4 class="movie-card-title" [title]="movie.title">{{ movie.title }}</h4>
+                            @if (movie.release_date) {
+                              <span class="movie-card-year">{{ movie.release_date | date:'yyyy' }}</span>
+                            }
+                          </div>
+                        </div>
+                      }
+                    </div>
+                  </div>
+                }
+              </div>
+
+            </div>
+          }
+
+          <!-- INDICADOR DE CARGA (ESCRITURA) -->
+          @if (isLoading()) {
+            <div class="message-wrapper wrapper-model">
+              <div class="avatar-ai">AI</div>
+              <div class="message-bubble bubble-model">
+                <div class="typing-indicator">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- ÁREA DE ENTRADA Y ENVÍO -->
+      <div class="chat-footer">
+        <div class="input-container">
+          <input
+            type="text"
+            [(ngModel)]="messageText"
+            (keyup.enter)="sendMessage()"
+            placeholder="Pregunta a Nexus AI..."
+            [disabled]="isLoading()"
+            aria-label="Escribe tu mensaje"
+            maxlength="500">
+          <button
+            type="button"
+            class="send-btn"
+            (click)="sendMessage()"
+            [disabled]="!messageText.trim() || isLoading()"
+            aria-label="Enviar mensaje"
+            title="Enviar">
+            ➔
+          </button>
+        </div>
+      </div>
+    }
+
+  </div>
+}

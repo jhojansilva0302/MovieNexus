@@ -1,0 +1,478 @@
+/* Contenedor principal de la sección */
+.comments-section-container {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+  padding: 0 4%;
+  width: 100%;
+}
+
+.section-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 2rem;
+  background: var(--grad-main);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  background: var(--grad-main);
+  border-radius: var(--radius-full);
+}
+
+/* Layout responsivo de dos columnas para pantallas grandes */
+.comments-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+@media (min-width: 900px) {
+  .comments-layout {
+    grid-template-columns: 400px 1fr;
+  }
+}
+
+/* --- TARJETA DE FORMULARIO --- */
+.comment-form-card {
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  background: var(--bg-glass);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  position: sticky;
+  top: 100px; /* Se queda fijo si se hace scroll */
+}
+
+.comment-form-card h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.form-intro {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 1.8rem;
+  line-height: 1.4;
+}
+
+/* Formulario Reactivo */
+.reactive-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #e5e5e5;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Inputs y Textareas Premium */
+.input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  background-color: rgba(13, 16, 32, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  color: white;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.95rem;
+  transition: all 0.25s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.25);
+  background-color: rgba(13, 16, 32, 0.95);
+}
+
+.form-group input.input-error,
+.form-group textarea.input-error {
+  border-color: #ff4b5c;
+  box-shadow: 0 0 8px rgba(255, 75, 92, 0.2);
+}
+
+.textarea-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.2rem;
+}
+
+.char-counter {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.counter-warn {
+  color: #ffd166;
+  font-weight: bold;
+}
+
+.error-msg {
+  font-size: 0.8rem;
+  color: #ff4b5c;
+  font-weight: 600;
+  margin-top: 0.2rem;
+}
+
+/* --- SELECTOR DE CALIFICACIÓN POR ESTRELLAS --- */
+.star-rating-selector {
+  display: flex;
+  gap: 0.6rem;
+  padding: 0.3rem 0;
+  align-items: center;
+}
+
+.star-button {
+  background: none;
+  border: none;
+  font-size: 2.2rem;
+  color: rgba(255, 255, 255, 0.12);
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  user-select: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+}
+
+.star-button:focus {
+  outline: none;
+  transform: scale(1.2);
+  color: rgba(255, 183, 3, 0.4);
+}
+
+.star-button.filled {
+  color: #ffb703; /* Amarillo Oro Neon */
+  text-shadow: 0 0 15px rgba(255, 183, 3, 0.6), 0 0 30px rgba(255, 183, 3, 0.3);
+}
+
+.star-button:hover {
+  transform: scale(1.25);
+}
+
+.star-button:active {
+  transform: scale(0.9);
+}
+
+/* Botón enviar */
+.btn-submit {
+  width: 100%;
+  margin-top: 0.5rem;
+  height: 48px;
+}
+
+.btn-submit:disabled {
+  background: linear-gradient(135deg, #2a3554 0%, #161e38 100%);
+  color: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: none;
+  cursor: not-allowed;
+  transform: none;
+  filter: none;
+}
+
+/* --- ALERTAS DE FEEDBACK --- */
+.alert {
+  display: flex;
+  gap: 0.8rem;
+  padding: 1rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.alert-icon {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.alert-content strong {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 0.15rem;
+}
+
+.alert-success {
+  background-color: rgba(70, 211, 105, 0.12);
+  border: 1px solid rgba(70, 211, 105, 0.3);
+  color: #46d369;
+}
+
+.alert-danger {
+  background-color: rgba(255, 75, 92, 0.12);
+  border: 1px solid rgba(255, 75, 92, 0.3);
+  color: #ff4b5c;
+}
+
+/* Inline Spinner */
+.spinner-inline {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 0.8s linear infinite;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+
+/* --- SECCIÓN DE COMENTARIOS --- */
+.comments-list-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 1rem;
+}
+
+.list-header h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.comment-count-badge {
+  background-color: rgba(0, 229, 255, 0.12);
+  color: var(--primary);
+  border: 1px solid rgba(0, 229, 255, 0.3);
+  padding: 0.2rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.comments-cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+/* Tarjeta de Reseña de Usuario */
+.comment-item-card {
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  background: var(--bg-glass);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.comment-item-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(0, 229, 255, 0.3);
+}
+
+.comment-item-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.author-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--grad-main);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.2rem;
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  flex-shrink: 0;
+}
+
+.author-meta {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.author-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.comment-date {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* Estrellas no interactivas */
+.comment-stars-display {
+  display: flex;
+  gap: 0.2rem;
+}
+
+.star-display-char {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.1);
+}
+
+.star-display-char.active-star {
+  color: #ffb703;
+  text-shadow: 0 0 5px rgba(255, 183, 3, 0.5);
+}
+
+.comment-body p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #e2e8f0;
+  word-break: break-word;
+}
+
+/* --- ESTADOS DE CARGA / ERROR / VACÍO --- */
+.empty-state-card,
+.error-state-card {
+  padding: 3.5rem 2rem;
+  text-align: center;
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.empty-icon {
+  font-size: 3rem;
+  color: rgba(0, 229, 255, 0.25);
+  animation: float 3s ease-in-out infinite;
+}
+
+.error-icon {
+  font-size: 3rem;
+  color: rgba(255, 75, 92, 0.35);
+}
+
+.empty-state-card h4,
+.error-state-card h4 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.empty-state-card p,
+.error-state-card p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  max-width: 350px;
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* --- SKELETON LOADER (SHIMMER) --- */
+.skeleton-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.skeleton-card {
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.skeleton-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.skeleton-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+}
+
+.skeleton-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  flex-grow: 1;
+}
+
+.skeleton-name {
+  width: 120px;
+  height: 14px;
+  border-radius: 4px;
+}
+
+.skeleton-date {
+  width: 80px;
+  height: 10px;
+  border-radius: 4px;
+}
+
+.skeleton-stars {
+  width: 100px;
+  height: 14px;
+  border-radius: 4px;
+}
+
+.skeleton-text {
+  width: 100%;
+  height: 16px;
+  border-radius: 4px;
+}

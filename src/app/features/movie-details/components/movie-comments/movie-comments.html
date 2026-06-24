@@ -1,0 +1,198 @@
+<div class="comments-section-container">
+  <h2 class="section-title">Comentarios y Calificaciones</h2>
+
+  <div class="comments-layout">
+    <!-- Columna Izquierda: Formulario para añadir comentario -->
+    <div class="comment-form-card glass-card">
+      <h3>Deja tu Opinión</h3>
+      <p class="form-intro">Comparte tu experiencia con la comunidad de MovieNexus.</p>
+
+      @if (submitSuccess) {
+        <div class="alert alert-success fade-in">
+          <span class="alert-icon">✓</span>
+          <div class="alert-content">
+            <strong>¡Comentario publicado!</strong>
+            <p>Tu opinión se ha integrado de manera exitosa.</p>
+          </div>
+        </div>
+      }
+
+      @if (submitError) {
+        <div class="alert alert-danger fade-in">
+          <span class="alert-icon">⚠</span>
+          <div class="alert-content">
+            <strong>Error al publicar</strong>
+            <p>{{ submitError }}</p>
+          </div>
+        </div>
+      }
+
+      <form [formGroup]="commentForm" (ngSubmit)="onSubmit()" class="reactive-form">
+        <!-- Campo: Autor (Nombre) -->
+        <div class="form-group">
+          <label for="author">Tu Nombre</label>
+          <div class="input-wrapper">
+            <input
+              type="text"
+              id="author"
+              formControlName="author"
+              placeholder="Ej. Sofia Perez"
+              [class.input-error]="hasError('author', 'required') || hasError('author', 'maxlength')"
+              aria-required="true"
+              aria-describedby="author-errors">
+          </div>
+          @if (hasError('author', 'required')) {
+            <span id="author-errors" class="error-msg" role="alert">El nombre es obligatorio.</span>
+          }
+          @if (hasError('author', 'maxlength')) {
+            <span id="author-errors" class="error-msg" role="alert">El nombre no debe superar los 50 caracteres.</span>
+          }
+        </div>
+
+        <!-- Campo: Calificación por Estrellas -->
+        <div class="form-group">
+          <label id="rating-label">Tu Calificación</label>
+          <div
+            class="star-rating-selector"
+            role="radiogroup"
+            aria-labelledby="rating-label"
+            (mouseleave)="clearHoveredRating()">
+            @for (star of [1, 2, 3, 4, 5]; track star) {
+              <button
+                type="button"
+                class="star-button"
+                [class.filled]="(hoveredRating || currentRating) >= star"
+                (click)="selectRating(star)"
+                (mouseenter)="setHoveredRating(star)"
+                (keydown.space)="$event.preventDefault(); selectRating(star)"
+                (keydown.enter)="$event.preventDefault(); selectRating(star)"
+                role="radio"
+                [attr.aria-checked]="currentRating === star"
+                [attr.aria-label]="'Calificar con ' + star + ' estrella' + (star > 1 ? 's' : '')"
+                tabindex="0">
+                ★
+              </button>
+            }
+          </div>
+          @if (hasError('rating', 'required') || hasError('rating', 'min')) {
+            <span class="error-msg" role="alert">Debes seleccionar al menos 1 estrella.</span>
+          }
+        </div>
+
+        <!-- Campo: Comentario (Texto) -->
+        <div class="form-group">
+          <label for="text">Comentario</label>
+          <div class="input-wrapper">
+            <textarea
+              id="text"
+              formControlName="text"
+              rows="4"
+              placeholder="Cuéntanos qué te pareció la película (mínimo 5 caracteres)..."
+              [class.input-error]="hasError('text', 'required') || hasError('text', 'minlength') || hasError('text', 'maxlength')"
+              aria-required="true"
+              aria-describedby="text-errors"></textarea>
+          </div>
+          <div class="textarea-footer">
+            <span class="char-counter" [class.counter-warn]="(commentForm.get('text')?.value?.length || 0) > 450">
+              {{ commentForm.get('text')?.value?.length || 0 }}/500
+            </span>
+          </div>
+          @if (hasError('text', 'required')) {
+            <span id="text-errors" class="error-msg" role="alert">El comentario es obligatorio.</span>
+          }
+          @if (hasError('text', 'minlength')) {
+            <span id="text-errors" class="error-msg" role="alert">El comentario debe tener al menos 5 caracteres.</span>
+          }
+          @if (hasError('text', 'maxlength')) {
+            <span id="text-errors" class="error-msg" role="alert">El comentario no debe superar los 500 caracteres.</span>
+          }
+        </div>
+
+        <!-- Botón de Envío -->
+        <button
+          type="submit"
+          class="btn-premium btn-submit"
+          [disabled]="commentForm.invalid || isSubmitting"
+          [attr.aria-busy]="isSubmitting">
+          @if (isSubmitting) {
+            <span class="spinner-inline"></span> Enviando...
+          } @else {
+            Publicar Reseña
+          }
+        </button>
+      </form>
+    </div>
+
+    <!-- Columna Derecha: Lista de comentarios -->
+    <div class="comments-list-wrapper">
+      <div class="list-header">
+        <h3>Opiniones de Usuarios</h3>
+        <span class="comment-count-badge">{{ comments.length }} {{ comments.length === 1 ? 'reseña' : 'reseñas' }}</span>
+      </div>
+
+      <!-- Estado: Cargando (Skeleton Loader Shimmer) -->
+      @if (isLoading) {
+        <div class="skeleton-list">
+          @for (i of [1, 2, 3]; track i) {
+            <div class="skeleton-card glass-card">
+              <div class="skeleton-header">
+                <div class="skeleton-avatar skeleton-base"></div>
+                <div class="skeleton-meta">
+                  <div class="skeleton-name skeleton-base"></div>
+                  <div class="skeleton-date skeleton-base"></div>
+                </div>
+              </div>
+              <div class="skeleton-stars skeleton-base"></div>
+              <div class="skeleton-text skeleton-base"></div>
+              <div class="skeleton-text skeleton-base" style="width: 75%"></div>
+            </div>
+          }
+        </div>
+      } @else if (error) {
+        <!-- Estado: Error de carga -->
+        <div class="error-state-card glass-card fade-in">
+          <span class="error-icon">⚠</span>
+          <h4>No se pudieron cargar los comentarios</h4>
+          <p>{{ error }}</p>
+          <button type="button" class="btn-outline" (click)="loadComments()">Reintentar Carga</button>
+        </div>
+      } @else {
+        <!-- Lista de Comentarios y Control Flow de Angular -->
+        <div class="comments-cards-container">
+          @for (comment of comments; track comment.id) {
+            <div class="comment-item-card glass-card fade-in">
+              <div class="comment-item-header">
+                <!-- Avatar ficticio basado en la inicial del autor -->
+                <div class="author-avatar">
+                  {{ comment.author.charAt(0).toUpperCase() }}
+                </div>
+                <div class="author-meta">
+                  <h4 class="author-name">{{ comment.author }}</h4>
+                  <span class="comment-date">
+                    {{ comment.createdAt | date:'mediumDate' }}
+                  </span>
+                </div>
+                <!-- Puntuación visual en estrellas (no interactiva) -->
+                <div class="comment-stars-display" [attr.aria-label]="'Calificación: ' + comment.rating + ' de 5 estrellas'">
+                  @for (star of [1, 2, 3, 4, 5]; track star) {
+                    <span class="star-display-char" [class.active-star]="comment.rating >= star">★</span>
+                  }
+                </div>
+              </div>
+              <div class="comment-body">
+                <p>{{ comment.text }}</p>
+              </div>
+            </div>
+          } @empty {
+            <!-- Estado: Lista Vacía (Empty State) -->
+            <div class="empty-state-card glass-card fade-in">
+              <span class="empty-icon">💬</span>
+              <h4>Aún no hay comentarios</h4>
+              <p>Sé el primero en compartir tu opinión sobre esta película.</p>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</div>

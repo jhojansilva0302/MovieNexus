@@ -6,11 +6,12 @@ import { CastCard } from '../../shared/components/cast-card/cast-card';
 import { Observable, forkJoin } from 'rxjs';
 import { CreditsResponse } from '../../core/models/cast.model';
 import { MovieTrailer } from './components/movie-trailer/movie-trailer';
+import { MovieComments } from './components/movie-comments/movie-comments';
 
 @Component({
   selector: 'app-movie-details',
   standalone: true,
-  imports: [CommonModule, CastCard, MovieTrailer],
+  imports: [CommonModule, CastCard, MovieTrailer, MovieComments],
   templateUrl: './movie-details.html',
   styleUrl: './movie-details.css'
 })

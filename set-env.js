@@ -23,7 +23,8 @@ const envConfigFile = `export const environment = {
   tmdbImageUrl: 'https://image.tmdb.org/t/p',
   apiKey: '${apiKey}',
   tmdbApiKey: '${apiKey}',
-  tmdbAccessToken: '${tmdbAccessToken}'
+  tmdbAccessToken: '${tmdbAccessToken}',
+  commentsApiUrl: 'https://api-comentarios-gm6f.onrender.com/api/comments'
 };
 `;
 
@@ -35,7 +36,8 @@ const devEnvConfigFile = `export const environment = {
   tmdbImageUrl: 'https://image.tmdb.org/t/p',
   apiKey: '${apiKey}',
   tmdbApiKey: '${apiKey}',
-  tmdbAccessToken: '${tmdbAccessToken}'
+  tmdbAccessToken: '${tmdbAccessToken}',
+  commentsApiUrl: 'https://api-comentarios-gm6f.onrender.com/api/comments'
 };
 `;
 
