@@ -34,6 +34,52 @@
               <span class="genre-tag">{{ genre.name }}</span>
             }
           </div>
+
+          <!-- SECCIÓN DE PROVEEDORES EN CABECERA -->
+          @if (data.providers) {
+            <div class="header-providers">
+              <!-- Suscripción (Flatrate) -->
+              @if (data.providers.flatrate && data.providers.flatrate.length > 0) {
+                <div class="header-provider-group">
+                  <span class="group-label">Ver ahora:</span>
+                  <div class="header-providers-list">
+                    @for (provider of data.providers.flatrate; track provider.provider_id) {
+                      <a [href]="data.providers.link" target="_blank" rel="noopener" class="header-provider-link" [title]="provider.provider_name + ' (Suscripción) - Ir a ver'">
+                        <img [src]="getProviderLogoUrl(provider.logo_path)" [alt]="provider.provider_name" class="header-provider-logo">
+                      </a>
+                    }
+                  </div>
+                </div>
+              }
+
+              <!-- Compra (Buy) y Renta (Rent) -->
+              @if ((data.providers.buy && data.providers.buy.length > 0) || (data.providers.rent && data.providers.rent.length > 0)) {
+                <div class="header-provider-group">
+                  <span class="group-label">Alquilar/Comprar:</span>
+                  <div class="header-providers-list">
+                    @if (data.providers.rent) {
+                      @for (provider of data.providers.rent; track provider.provider_id) {
+                        <a [href]="data.providers.link" target="_blank" rel="noopener" class="header-provider-link" [title]="provider.provider_name + ' (Renta) - Ir a ver'">
+                          <img [src]="getProviderLogoUrl(provider.logo_path)" [alt]="provider.provider_name" class="header-provider-logo">
+                        </a>
+                      }
+                    }
+                    @if (data.providers.buy) {
+                      @for (provider of data.providers.buy; track provider.provider_id) {
+                        <a [href]="data.providers.link" target="_blank" rel="noopener" class="header-provider-link" [title]="provider.provider_name + ' (Compra) - Ir a ver'">
+                          <img [src]="getProviderLogoUrl(provider.logo_path)" [alt]="provider.provider_name" class="header-provider-logo">
+                        </a>
+                      }
+                    }
+                  </div>
+                </div>
+              }
+
+              @if (!data.providers.flatrate?.length && !data.providers.buy?.length && !data.providers.rent?.length) {
+                <span class="no-providers-label">No disponible en streaming</span>
+              }
+            </div>
+          }
         </div>
       </div>
 
@@ -41,6 +87,8 @@
         <h2>Sinopsis</h2>
         <p class="overview">{{ data.details.overview }}</p>
       </section>
+
+
 
       <!-- CARGA DIFERIDA: El Tráiler (on viewport) -->
       <section class="trailer-section">

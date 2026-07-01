@@ -122,6 +122,19 @@
             [disabled]="isLoading()"
             aria-label="Escribe tu mensaje"
             maxlength="500">
+
+          <!-- Botón de micrófono para dictado por voz -->
+          <button
+            type="button"
+            class="mic-btn"
+            [class.listening]="isListening()"
+            (click)="toggleListening()"
+            [disabled]="isLoading()"
+            [title]="isListening() ? 'Detener dictado' : 'Dictar por voz'"
+            [aria-label]="isListening() ? 'Detener dictado de voz' : 'Iniciar dictado de voz'">
+            🎤
+          </button>
+
           <button
             type="button"
             class="send-btn"

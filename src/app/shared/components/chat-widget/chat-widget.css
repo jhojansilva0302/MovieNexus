@@ -512,3 +512,51 @@
     right: 20px;
   }
 }
+
+/* --- BOTÓN DE MICRÓFONO Y ANIMACIÓN DE DICTADO --- */
+.mic-btn {
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.25s ease;
+  color: var(--text-muted, #8a8d9b);
+  margin-right: 6px;
+}
+
+.mic-btn:hover:not(:disabled) {
+  color: var(--primary, #00e5ff);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.mic-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.mic-btn.listening {
+  color: #ff4b5c;
+  background-color: rgba(255, 75, 92, 0.15);
+  animation: pulseRed 1.2s infinite ease-in-out;
+}
+
+@keyframes pulseRed {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 75, 92, 0.6);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(255, 75, 92, 0);
+    transform: scale(1.08);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 75, 92, 0);
+    transform: scale(1);
+  }
+}

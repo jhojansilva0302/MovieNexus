@@ -1,4 +1,4 @@
-import { Component, inject, signal, effect, ElementRef, ViewChild, AfterViewChecked, ChangeDetectionStrategy, SecurityContext } from '@angular/core';
+import { Component, inject, signal, effect, ElementRef, ViewChild, AfterViewChecked, ChangeDetectionStrategy, SecurityContext, NgZone, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -14,10 +14,12 @@ import { Movie } from '../../../core/models/movie.model';
   styleUrl: './chat-widget.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ChatWidget implements AfterViewChecked {
+export class ChatWidget implements AfterViewChecked, OnDestroy {
   private geminiService = inject(GeminiService);
   private router = inject(Router);
   private sanitizer = inject(DomSanitizer);
+  private zone = inject(NgZone);
+  private cdr = inject(ChangeDetectorRef);
 
   // Signals mapeados desde el servicio
   readonly history = this.geminiService.history;
@@ -27,9 +29,14 @@ export class ChatWidget implements AfterViewChecked {
   // Estados locales para el comportamiento del widget
   readonly isOpen = signal<boolean>(false);
   readonly isMinimized = signal<boolean>(false);
+  readonly isListening = signal<boolean>(false);
 
   messageText = '';
   private shouldScroll = false;
+
+  // Web Speech API
+  recognition: any;
+  private speechTimeout: any;
 
   @ViewChild('messageContainer') private messageContainer!: ElementRef;
 
@@ -157,6 +164,88 @@ export class ChatWidget implements AfterViewChecked {
       }
     } catch (err) {
       console.warn('No se pudo realizar el scroll automático en el chat:', err);
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (this.speechTimeout) {
+      clearTimeout(this.speechTimeout);
+    }
+    if (this.recognition) {
+      this.recognition.abort();
+    }
+  }
+
+  initSpeechRecognition(): void {
+    if (typeof window === 'undefined') return;
+
+    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      console.warn('Reconocimiento de voz no soportado en este navegador.');
+      return;
+    }
+
+    this.recognition = new SpeechRecognition();
+    this.recognition.lang = 'es-ES';
+    this.recognition.continuous = false;
+    this.recognition.interimResults = false;
+
+    this.recognition.onstart = () => {
+      this.zone.run(() => {
+        this.isListening.set(true);
+      });
+    };
+
+    this.recognition.onend = () => {
+      this.zone.run(() => {
+        this.isListening.set(false);
+      });
+    };
+
+    this.recognition.onerror = (event: any) => {
+      console.error('Error de SpeechRecognition:', event.error);
+      this.zone.run(() => {
+        this.isListening.set(false);
+      });
+    };
+
+    this.recognition.onresult = (event: any) => {
+      const transcript = event.results[0][0].transcript;
+      if (transcript) {
+        this.zone.run(() => {
+          this.messageText = transcript;
+          this.cdr.markForCheck();
+
+          // Auto-envío inteligente tras 600ms
+          if (this.speechTimeout) clearTimeout(this.speechTimeout);
+          this.speechTimeout = setTimeout(() => {
+            this.zone.run(() => {
+              this.sendMessage();
+              this.cdr.markForCheck();
+            });
+          }, 600);
+        });
+      }
+    };
+  }
+
+  toggleListening(): void {
+    if (typeof window === 'undefined') return;
+
+    if (!this.recognition) {
+      this.initSpeechRecognition();
+    }
+
+    if (!this.recognition) {
+      alert('Tu navegador no soporta el reconocimiento de voz (SpeechRecognition). Pruebe con Google Chrome.');
+      return;
+    }
+
+    if (this.isListening()) {
+      this.recognition.stop();
+    } else {
+      if (this.speechTimeout) clearTimeout(this.speechTimeout);
+      this.recognition.start();
     }
   }
 }
